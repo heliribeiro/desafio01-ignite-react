@@ -23,7 +23,7 @@ export function TaskList() {
       title:newTaskTitle,
       isComplete:false
     }
-    
+
     let currentTasks:Task[] = [...tasks, newTask]
 
     setTasks(currentTasks)
@@ -32,10 +32,24 @@ export function TaskList() {
 
   function handleToggleTaskCompletion(id: number) {
     // Altere entre `true` ou `false` o campo `isComplete` de uma task com dado ID
+    let newTasks = [...tasks]
+    let taskUpdated = newTasks.find(task => task.id === id);
+
+    if(!taskUpdated) return
+
+    taskUpdated.isComplete = !taskUpdated?.isComplete
+
+
+    setTasks(newTasks)
+    
   }
 
   function handleRemoveTask(id: number) {
     // Remova uma task da listagem pelo ID
+   
+   let newTasks = tasks.filter(task => task.id !== id)
+
+   setTasks(newTasks)
   }
 
   return (
